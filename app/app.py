@@ -1,14 +1,15 @@
-import time
 import string
+import time
 from hashlib import sha512
+from os import getenv
 from random import choice
+
 import motor.motor_asyncio
 from fastapi import Body, FastAPI, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
-from models.pubkey import PublicKeyModel, PublicKeyResponse
 
-from os import getenv
+from models.pubkey import PublicKeyModel, PublicKeyResponse
 
 url = getenv("mongourl")
 
