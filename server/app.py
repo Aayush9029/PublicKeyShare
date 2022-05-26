@@ -10,7 +10,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from os import getenv
 
-url = getenv("mongour")
+url = getenv("mongourl")
 
 app = FastAPI()
 client = motor.motor_asyncio.AsyncIOMotorClient(url)
