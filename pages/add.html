@@ -37,26 +37,24 @@
 </body>
 
 <script>
-window.onload = function () {
-    let btn = document.querySelector('.btn');
-    btn.addEventListener('click', function () {
-        btn.classList.add("btn-progress");
-        // add class to btn
-        setTimeout(function () {
-            btn.classList.add("btn-fill");
-        }, 500);
+    window.onload = function () {
+        let btn = document.querySelector('.btn');
+        btn.addEventListener('click', function () {
+            btn.classList.add("btn-progress");
+            // add class to btn
+            setTimeout(function () {
+                btn.classList.add("btn-fill");
+            }, 500);
 
-        setTimeout(function () {
-            btn.classList.remove("btn-fill");
-        }, 4100);
+            setTimeout(function () {
+                btn.classList.remove("btn-fill");
+            }, 4100);
 
-        setTimeout(function () {
-            btn.classList.add("btn-complete");
-        }, 4100);
-    })
-}
-
-
+            setTimeout(function () {
+                btn.classList.add("btn-complete");
+            }, 4100);
+        })
+    }
 
 </script>
 
