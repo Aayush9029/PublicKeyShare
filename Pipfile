@@ -9,7 +9,7 @@ fastapi = "*"
 uvicorn = "*"
 pymongo = {extras = ["srv"], version = "*"}
 
-[dev - packages]
+[dev-packages]
 
 [requires]
 python_version = "3.9"
