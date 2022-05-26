@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{data['title']}} Public Key</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="../static/viewstyle.css">
+    <!-- <script src="{{url_for('static', filename='view.js')}}"></script> -->
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>
+            {{ data['title'] }}
+        </h2>
+        <i class="comment">
+            {{ data['comment'] }}
+        </i>
+
+        <br>
+        <b>Public Key</b>
+        <div class="public-key">
+            {{ data['public_key'] }}
+        </div>
+        <br>
+        <b>SHA-512</b>
+        <div class="sha-512">
+            {{ data['sha512'] }}
+        </div>
+        <br>
+        <b>Identifier</b>
+        <div class="input">
+            <div class="input-overlay" id="input-overlay"></div>
+            <input type="password" placeholder="Identifier..." class="input-password" id="input-pass"
+                value="{{ data['identifier'] }}">
+            <i class='bx bx-hide input-icon' id="input-icon"></i>
+        </div>
+
+        <div class="copy-btns">
+            <button class="copy-btn">
+                <i class='bx bx-clipboard' id="input-icon"></i>
+                Copy Public Key
+            <button class="copy-btn">
+                <i class='bx bx-text' id="input-icon"></i>
+                Copy SHA-512
+            </button>
+            <button class="copy-btn">
+                <i class='bx bx-link' id="input-icon"></i>
+                Copy URL
+            </button>
+        </div>
+    </div>
+</body>
+
+<!-- <body>
+    {{ data['sha512'] }}
+    {{ data['title'] }}
+    {{ data['public_key'] }}
+    {{ data['key_type'] }}
+    {{ data['identifier'] }}
+</body> -->
+<script src="../static/view.js"></script>
+
+</html>
