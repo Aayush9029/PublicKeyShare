@@ -3,7 +3,7 @@ import time
 from hashlib import sha512
 from os import getenv
 from random import choice
-
+from html import escape
 import motor.motor_asyncio
 from fastapi import Body, FastAPI, HTTPException, status
 from fastapi.encoders import jsonable_encoder
@@ -60,6 +60,10 @@ async def add_public_key(public_key: PublicKeyModel):
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
             detail="Public key already exists")
+
+    # escape all html tags in json_key values
+    for key in json_key:
+        json_key[key] = escape(json_key[key])
 
     new_key = await db["public_key_collection"].insert_one(json_key)
     created_key = await db["public_key_collection"].find_one({"_id": new_key.inserted_id})
