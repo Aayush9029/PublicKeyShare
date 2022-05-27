@@ -13,12 +13,35 @@ from models.pubkey import PublicKeyModel, PublicKeyResponse
 
 url = getenv("mongourl")
 
-app = FastAPI()
+app = FastAPI(
+    title="Public Key Share",
+    description="API for storing and retrieving public keys.",
+    version="0.0.125",
+    license_info={
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+    },
+)
+
 client = motor.motor_asyncio.AsyncIOMotorClient(url)
 db = client.publickeys
 
 
 # Helper Functions
+def custom_escape(text, strict=True):
+    allowed_punctuation = list("-@ +/._'=^*|~")
+    disallowed_punctuation = string.punctuation - set(allowed_punctuation)
+
+    escaped = escape(text, quote=True)
+
+    if strict:
+        for char in escaped:
+            if char in disallowed_punctuation:
+                escaped = escaped.replace(char, "")
+
+    return escaped
+
+
 async def key_exists(key):
     if await db["public_key_collection"].find_one({"key": key}):
         return True
@@ -63,7 +86,7 @@ async def add_public_key(public_key: PublicKeyModel):
 
     # escape all html tags in json_key values
     for key in json_key:
-        json_key[key] = escape(json_key[key])
+        json_key[key] = custom_escape(json_key[key], strict=True)
 
     new_key = await db["public_key_collection"].insert_one(json_key)
     created_key = await db["public_key_collection"].find_one({"_id": new_key.inserted_id})
