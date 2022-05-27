@@ -1,11 +1,11 @@
 const getURLKey = () => {
   const url = window.location.href;
-  const urlKey = url.split('?')[1];
-  return urlKey;
+  console.log(url);
+  return url.split('#')[1];
 };
 
 const fetchData = async () => {
-  let apiURL = "http://127.0.0.1:80/" + getURLKey() + "/";
+  let apiURL = "http://127.0.0.1:80/" + getURLKey();
   console.log(apiURL);
   const response = await fetch(apiURL);
   const data = await response.json();
