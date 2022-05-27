@@ -30,7 +30,7 @@ db = client.publickeys
 # Helper Functions
 def custom_escape(text, strict=True):
     allowed_punctuation = list("-@ +/._'=^*|~")
-    disallowed_punctuation = string.punctuation - set(allowed_punctuation)
+    disallowed_punctuation = set(string.punctuation) - set(allowed_punctuation)
 
     escaped = escape(text, quote=True)
 
